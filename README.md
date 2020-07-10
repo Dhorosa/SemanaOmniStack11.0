@@ -6,7 +6,7 @@ Curso com Diego Fernandes da RocketSeat
 O Be the hero é um projeto com o intuito de facilitar a forma com que as ongs interagem com as pessoas. Pela aplicação web as ongs podem cadastrar casos que necessitam de doação, os usuários comuns, podem ler os casos ccadastrados pela aplicação mobile, e se tornarem os heróis de um caso.
 
 
-💻 # Tecnologias Usadas
+#💻 Tecnologias Usadas
 
 As seguintes tecnologias foram utiliadas neste projeto:
 
