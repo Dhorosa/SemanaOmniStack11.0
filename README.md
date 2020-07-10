@@ -13,9 +13,11 @@ O Be the hero é um projeto com o intuito de facilitar a forma com que as ongs i
 ## Imagens Mobile
 ![Splash](https://user-images.githubusercontent.com/53453696/87107075-3830d100-c235-11ea-897f-5bb7e4c7633e.jpg)
 
+![Home mobile](https://user-images.githubusercontent.com/53453696/87106611-37e40600-c234-11ea-8ba4-ae6e63007c52.jpg)
+
 ![Caso Mobile](https://user-images.githubusercontent.com/53453696/87106606-374b6f80-c234-11ea-97cf-7818b0f63938.jpg)
 
-![Home mobile](https://user-images.githubusercontent.com/53453696/87106611-37e40600-c234-11ea-8ba4-ae6e63007c52.jpg)
+
 
 💻 Tecnologias Usadas
 
