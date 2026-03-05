@@ -1,6 +1,6 @@
 import React , {useState, useEffect} from 'react';
 import './style.css';
-import logo from '../../assets Web/logo.svg';
+import logo from '../../assets/logo.svg';
 import { Link, useHistory } from 'react-router-dom';
 import {FiPower, FiTrash2} from 'react-icons/fi';
 import api from '../../Services/api';

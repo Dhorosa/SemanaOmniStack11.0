@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import {FiLogIn} from 'react-icons/fi';
-import logo from '../../assets Web/logo.svg';
-import heroesImg from '../../assets Web/heroes.png';
+import logo from '../../assets/logo.svg';
+import heroesImg from '../../assets/heroes.png';
 import api from '../../Services/api';
 
 import './style.css';

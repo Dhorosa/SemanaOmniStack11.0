@@ -6,7 +6,7 @@ import api from '../../Services/api';
 
 
 
-import logo from '../../assets Web/logo.svg';
+import logo from '../../assets/logo.svg';
 import './style.css';
 
 

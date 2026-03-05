@@ -33,6 +33,40 @@ O Be the hero é um projeto com o intuito de facilitar a forma com que as ongs i
 
 ![Caso Mobile](https://user-images.githubusercontent.com/53453696/87106606-374b6f80-c234-11ea-97cf-7818b0f63938.jpg)
 
+## Estrutura do repositório
+
+- `backend`: API construída com Express, Knex e SQLite (já com banco binário incluído).
+- `frontend`: SPA em React (Create React App) que consome o backend e exibe os casos.
+- `mobile`: App Expo/React Native com rotas e integração com o mesmo backend.
+
+## Executando localmente
+
+### Backend
+
+1. Vá para `backend`, instale dependências (`npm install`).
+2. Rode os testes com `npm test` (usa `jest --passWithNoTests` para não falhar sem specs).
+3. Inicie com `npm start`.
+4. A API lê o `PORT` via `process.env.PORT` (fallback `3333`), então ajuste conforme o host.
+
+### Frontend (web)
+
+1. Entre em `frontend` e instale dependências (`npm install`).
+2. Ajuste `REACT_APP_API_URL` (`export REACT_APP_API_URL=http://localhost:3333` no mac/linux ou `set REACT_APP_API_URL=http://localhost:3333` no Windows) para apontar para o backend local.
+3. Rode `npm start` para desenvolvimento.
+4. O build usa `cross-env NODE_OPTIONS=--openssl-legacy-provider react-scripts build` para lidar com a versão atual do Node e gera `build/` (deploy em Vercel/Netlify ou qualquer servidor estático).
+
+### Mobile (Expo)
+
+1. Entre em `mobile` e rode `npm install`.
+2. Ajuste o `extra.apiUrl` no `app.json` ou defina a variável `API_URL`/`EXPO_PUBLIC_API_URL` com o endereço acessível (por exemplo `http://192.168.x.x:3333` para um dispositivo).
+3. Inicie com `expo start` e escolha o modo desejado (emulador, físico ou web).
+
+## Deploy
+
+- **Backend:** qualquer provider Node.js pode usar o `start` script; garanta que a variável `PORT` esteja definida e que o SQLite (`src/database/db.sqlite`) esteja incluído no deploy.
+- **Frontend:** gere `build/` com `npm run build` (já inclui a variável `NODE_OPTIONS=--openssl-legacy-provider` para compatibilidade). Defina `REACT_APP_API_URL` no ambiente do host para apontar para a API publicada.
+- **Mobile:** o app lê o backend por `Constants.manifest.extra.apiUrl`. Atualize esse valor (ou as variáveis `API_URL`/`EXPO_PUBLIC_API_URL`) com a URL pública da API antes de publicar no Expo ou nas lojas.
+
 
 
 

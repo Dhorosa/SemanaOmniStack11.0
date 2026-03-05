@@ -21,6 +21,9 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "extra": {
+      "apiUrl": "http://localhost:3333"
+    },
     "ios": {
       "supportsTablet": true
     }
