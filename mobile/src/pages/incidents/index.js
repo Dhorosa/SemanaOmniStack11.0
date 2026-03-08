@@ -1,101 +1,95 @@
 import React, { useState, useEffect } from 'react';
-import {useNavigation } from '@react-navigation/native';
-import {Feather } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { Feather } from '@expo/vector-icons';
 
 import api from '../../services/api';
-import {View , FlatList, Image , Text, TouchableOpacity} from 'react-native';
-
+import { View, FlatList, Image, Text, TouchableOpacity } from 'react-native';
 
 import logoImg from '../../assets/logo.png';
 import styles from './styles';
 
-export default function Incidents(){
-    const [incidents,setIncidents]= useState ([]);
-    const [total,setTotal]= useState (0);
-    const [page, setPage] = useState(1);
-    const [loading, setLoading]= useState(false);
+export default function Incidents() {
+  const [incidents, setIncidents] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
 
-    const navegation = useNavigation();
-    function Nada (){
-        return;
-    }
-    function navegationToDetail(incident) {
-        navegation.navigate ('Detail', {incident});
-    }
+  const navigation = useNavigation();
 
-    async function loadIncidents(){
-        if (loading){
-            return;
-        }
-        if (total > 0 && incidents.length == total){
-            return;
-        }
-        setLoading(true);
+  function navigationToDetail(incident) {
+    navigation.navigate('Detail', { incident });
+  }
 
-        const response = await api.get('incidents', {
-            params: {page}
-        });
-
-        setIncidents([...incidents, ...response.data]);
-        setTotal(response.headers['x-total-count']);
-        setPage(page + 1);
-        setLoading(false);
+  async function loadIncidents() {
+    if (loading) {
+      return;
     }
 
-    useEffect(()=> {loadIncidents();
-    
-    },[] );
+    if (total > 0 && incidents.length === total) {
+      return;
+    }
 
+    setLoading(true);
 
-    return (    
-        <View style={styles.container} >
+    const response = await api.get('incidents', {
+      params: { page },
+    });
 
-            <View style={styles.header}>
-                <Image source={logoImg} />
-                <Text style={styles.headerText}>
-                    Total de <Text style={styles.headerTextBold}>{total} casos</Text>.
+    setIncidents([...incidents, ...response.data]);
+    setTotal(response.headers['x-total-count']);
+    setPage(page + 1);
+    setLoading(false);
+  }
 
-                </Text>
+  useEffect(() => {
+    loadIncidents();
+  }, []);
 
-            </View> 
-            <Text style={styles.title}>Bem-Vindo!</Text>
-            <Text style={styles.description}>Escolha um dos casos abaixo e salve o dia.</Text>
+  return (
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Image source={logoImg} />
+        <Text style={styles.headerText}>
+          Total de <Text style={styles.headerTextBold}>{total} casos</Text>.
+        </Text>
+      </View>
 
-            <FlatList
-                data={incidents}
-                style={styles.incidentsList}
-                keyExtractor={incidents => String(incidents.id)  }
-                showsVerticalScrollIndicator={false} 
-                onEndReached={loadIncidents}
-                onEndReachedThreshold={0.2}
-                renderItem={({item: incidents}) => (
-                    <View style={ styles.incidents}>
-                        <Text style={[styles.incidentsProperty, { marginTop: 0 }]}>ONG: </Text>
-                        <Text style={styles.incidentsValue}> {incidents.name} </Text>
+      <Text style={styles.title}>Bem-vindo!</Text>
+      <Text style={styles.description}>Escolha um caso para ver os detalhes.</Text>
 
-                        <Text style={styles.incidentsProperty}>CASO sempre Ser√°: </Text>
-                        <Text style={styles.incidentsValue}>{incidents.title} </Text>
+      <FlatList
+        data={incidents}
+        style={styles.incidentsList}
+        keyExtractor={(incident) => String(incident.id)}
+        showsVerticalScrollIndicator={false}
+        onEndReached={loadIncidents}
+        onEndReachedThreshold={0.2}
+        renderItem={({ item: incident }) => (
+          <View style={styles.incidents}>
+            <Text style={[styles.incidentsProperty, { marginTop: 0 }]}>CASO:</Text>
+            <Text style={styles.incidentsValue}>{incident.title}</Text>
 
-                        <Text style={styles.incidentsProperty}>VALOR SER√Å: </Text>
-                        <Text style={styles.incidentsValue}>{Intl.NumberFormat('pt-BR', {
-                            style: 'currency',
-                            currency: 'BRL' 
-                            } ).format(incidents.value)} 
-                        </Text>
+            <Text style={styles.incidentsProperty}>DESCRI«√O:</Text>
+            <Text style={styles.incidentsValue}>{incident.description}</Text>
 
-                        <TouchableOpacity 
-                            style={styles.datailsButton}
-                            onPress ={() =>  navegationToDetail (incidents)}
-                        >
-                            <Text style={styles.detailsButtonText} >Ver mais detalhes </Text> 
-                            <Feather name="arrow-right" size={16} color="#E02041" />
-                        </TouchableOpacity>
+            <Text style={styles.incidentsProperty}>VALOR:</Text>
+            <Text style={styles.incidentsValue}>
+              {Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+              }).format(incident.value)}
+            </Text>
 
-                    </View>
-
-                )}
-            />
-                   
-        </View>
-    );
+            <TouchableOpacity
+              style={styles.datailsButton}
+              onPress={() => navigationToDetail(incident)}
+            >
+              <Text style={styles.detailsButtonText}>Ver mais detalhes</Text>
+              <Feather name="arrow-right" size={16} color="#E02041" />
+            </TouchableOpacity>
+          </View>
+        )}
+      />
+    </View>
+  );
 }
