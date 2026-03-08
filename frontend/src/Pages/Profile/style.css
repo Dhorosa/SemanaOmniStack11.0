@@ -6,7 +6,7 @@
  }
 
  .profile-container header{
-    display: flex;
+    display: flex; 
     align-items: center;
  }
  .profile-container header span{
@@ -39,12 +39,6 @@
  .profile-container h1{
      margin-top: 80px;
      margin-bottom: 24px;
- }
- .profile-description{
-     color: #737380;
-     margin-bottom: 24px;
-     max-width: 620px;
-     line-height: 24px;
  }
  .profile-container ul{
      display: grid;
@@ -82,9 +76,5 @@
     color: #737380;
     line-height: 21px;
     font-size: 16px;
-
-}
-.empty-message{
-    color: #737380;
-    margin-top: 24px;
+    
 }

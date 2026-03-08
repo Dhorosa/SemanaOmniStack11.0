@@ -8,9 +8,17 @@ module.exports = {
     const total = Number(resultadoCount.count || 0);
 
     const incidents = await connection('incidents')
+      .join('ongs', 'ongs.id', '=', 'incidents.ong_id')
       .limit(5)
       .offset((page - 1) * 5)
-      .select(['id', 'title', 'description', 'value']);
+      .select([
+        'incidents.*',
+        'ongs.name',
+        'ongs.email',
+        'ongs.whatsapp',
+        'ongs.city',
+        'ongs.uf',
+      ]);
 
     response.header('X-Total-Count', String(total));
     return response.json(incidents);
