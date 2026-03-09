@@ -61,11 +61,6 @@ O Be the hero é um projeto com o intuito de facilitar a forma com que as ongs i
 2. Ajuste o `extra.apiUrl` no `app.json` ou defina a variável `API_URL`/`EXPO_PUBLIC_API_URL` com o endereço acessível (por exemplo `http://192.168.x.x:3333` para um dispositivo).
 3. Inicie com `expo start` e escolha o modo desejado (emulador, físico ou web).
 
-## Deploy
-
-- **Backend:** qualquer provider Node.js pode usar o `start` script; garanta que a variável `PORT` esteja definida e que o SQLite (`src/database/db.sqlite`) esteja incluído no deploy.
-- **Frontend:** gere `build/` com `npm run build` (já inclui a variável `NODE_OPTIONS=--openssl-legacy-provider` para compatibilidade). Defina `REACT_APP_API_URL` no ambiente do host para apontar para a API publicada.
-- **Mobile:** o app lê o backend por `Constants.manifest.extra.apiUrl`. Atualize esse valor (ou as variáveis `API_URL`/`EXPO_PUBLIC_API_URL`) com a URL pública da API antes de publicar no Expo ou nas lojas.
 
 
 
